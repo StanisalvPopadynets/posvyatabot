@@ -27,3 +27,5 @@ export const notALinkMsg = `извините, мы принимаем тольк
 можете свериться с допустимыми форматами (/format_info)`;
 export const validLinkMsg = `ваше сообщение было переслано!
 благодарим за вклад и надеемся именно ваши треки соберут полный танцпол`;
+
+export const ADMIN_CHAT_ID = process.env.ADMIN_CHAT_ID;
