@@ -13,7 +13,7 @@ bot.on("message", async ({ text, from: { first_name, last_name, username }, chat
   if (await bannedTable.checkIfBanned(id)) {
     return;
   }
-  if (id === Number(ADMIN_CHAT_ID && reply_to_message)) {
+  if (id === Number(ADMIN_CHAT_ID) && reply_to_message) {
     const arrOfSplitByNewLine = reply_to_message.text.split(`\n`);
     const userToBeReplied = arrOfSplitByNewLine[arrOfSplitByNewLine.length - 1];
     bot.sendMessage(userToBeReplied, text);
