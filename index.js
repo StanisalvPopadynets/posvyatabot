@@ -34,6 +34,7 @@ bot.on("message", async ({ text, from: { first_name, last_name, username }, chat
 
 bot.onText(/\/start/, ({ chat: { id } }) => {
   bot.sendMessage(id, greetingMsg);
+  bot.sendMessage(id, formatInfoMsg);
 });
 
 bot.onText(/\/format_info/, ({ chat: { id } }) => {
