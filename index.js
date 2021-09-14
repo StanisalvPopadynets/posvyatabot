@@ -19,6 +19,12 @@ bot.on("message", async ({ text, from: { first_name, last_name, username }, chat
     bot.sendMessage(userToBeReplied, text);
     return;
   }
+
+  if (!text) {
+    bot.sendMessage(id, notALinkMsg);
+    return;
+  }
+
   if (text[0] === "/") return;
   let responseMessage = notALinkMsg;
   if (validateLink(text)) {
