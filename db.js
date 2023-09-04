@@ -31,7 +31,7 @@ export default (table) => ({
       await pool.query(sql);
       result = "Успешно забанен!";
     } catch (e) {
-      if (e.detail.includes("already exists")) {
+      if (e?.detail?.includes("already exists")) {
         return (result = "Уже забанен!");
       }
       return (result = "Ошибка при бане!");
