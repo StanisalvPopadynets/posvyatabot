@@ -1,5 +1,5 @@
 import TelegramBot from "node-telegram-bot-api";
-import { ADMIN_CHAT_ID, formatInfoMsg, greetingMsg, invalidLinksMsg, notALinkMsg, validLinkMsg } from "./constants.js";
+import { ADMIN_CHAT_ID, formatInfoMsg, greetingMsg, invalidLinksMsg, notALinkMsg, textOnlyMessagesMsg, validLinkMsg } from "./constants.js";
 import db from "./db.js";
 import { validateLink } from "./utils.js";
 
@@ -16,7 +16,11 @@ bot.on("message", async ({ text, from: { first_name, last_name, username }, chat
   if (id === Number(ADMIN_CHAT_ID) && reply_to_message) {
     const arrOfSplitByNewLine = reply_to_message.text.split(`\n`);
     const userToBeReplied = arrOfSplitByNewLine[arrOfSplitByNewLine.length - 1];
-    bot.sendMessage(userToBeReplied, text);
+    if(!text) {
+      bot.sendMessage(ADMIN_CHAT_ID, textOnlyMessagesMsg);
+    } else {
+      bot.sendMessage(userToBeReplied, text);
+    }
     return;
   }
 
