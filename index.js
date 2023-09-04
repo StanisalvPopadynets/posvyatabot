@@ -29,7 +29,7 @@ bot.on("message", async ({ text, from: { first_name, last_name, username }, chat
   let responseMessage = notALinkMsg;
   if (validateLink(text)) {
     responseMessage = validLinkMsg;
-    bot.sendMessage(ADMIN_CHAT_ID, `${text}\n\n${first_name} ${last_name}\n@${username}\n${id}`);
+    bot.sendMessage(ADMIN_CHAT_ID, `${text}\n\n${first_name} ${last_name || ''}\n@${username}\n${id}`);
   } else {
     if (/http/.test(text)) {
       responseMessage = invalidLinksMsg;
