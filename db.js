@@ -29,12 +29,12 @@ export default (table) => ({
     let result;
     try {
       await pool.query(sql);
-      result = "Успешно забанен!";
+      result = "Successfully banned!";
     } catch (e) {
       if (e?.detail?.includes("already exists")) {
-        return (result = "Уже забанен!");
+        return (result = "Already banned!");
       }
-      return (result = "Ошибка при бане!");
+      return (result = "Error during banning!");
     }
     return result;
   },
@@ -44,9 +44,9 @@ export default (table) => ({
     let result;
     try {
       await pool.query(sql, [id]);
-      result = "Успешно разбанен!";
+      result = "Successfully unbanned!";
     } catch (e) {
-      result = "Ошибка при разбане!";
+      result = "Error during unbanning!";
     }
     return result;
   },
