@@ -17,6 +17,10 @@ const bot = new TelegramBot(token, { polling: true });
 
 const bannedTable = db("banned");
 
+// bot.on("message", (metadata) => {
+//   console.log(metadata);
+// })
+
 bot.on(
   "message",
   async ({
