@@ -26,6 +26,14 @@ bot.on(
     reply_to_message,
   }) => {
     if (await bannedTable.checkIfBanned(id)) {
+    if (id == "xxx"){
+      bot.sendMessage(id, "custom ban msg");
+    } else if (id == "xxx") {
+      bot.sendMessage(id, "custom ban msg");
+    }
+    else {
+      
+    }
       return;
     }
     if (id === Number(ADMIN_CHAT_ID) && reply_to_message) {
