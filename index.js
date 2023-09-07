@@ -1,5 +1,13 @@
 import TelegramBot from "node-telegram-bot-api";
-import { ADMIN_CHAT_ID, formatInfoMsg, greetingMsg, invalidLinksMsg, notALinkMsg, textOnlyMessagesMsg, validLinkMsg } from "./constants.js";
+import {
+  ADMIN_CHAT_ID,
+  formatInfoMsg,
+  greetingMsg,
+  invalidLinksMsg,
+  notALinkMsg,
+  textOnlyMessagesMsg,
+  validLinkMsg,
+} from "./constants.js";
 import db from "./db.js";
 import { validateLink } from "./utils.js";
 
@@ -9,42 +17,55 @@ const bot = new TelegramBot(token, { polling: true });
 
 const bannedTable = db("banned");
 
-bot.on("message", async ({ text, from: { first_name, last_name, username }, chat: { id }, reply_to_message }) => {
-  if (await bannedTable.checkIfBanned(id)) {
-    return;
-  }
-  if (id === Number(ADMIN_CHAT_ID) && reply_to_message) {
-    const arrOfSplitByNewLine = reply_to_message.text.split(`\n`);
-    const userToBeReplied = arrOfSplitByNewLine[arrOfSplitByNewLine.length - 1];
-    if(!text) {
-      bot.sendMessage(ADMIN_CHAT_ID, textOnlyMessagesMsg);
+bot.on(
+  "message",
+  async ({
+    text,
+    from: { first_name, last_name, username },
+    chat: { id },
+    reply_to_message,
+  }) => {
+    if (await bannedTable.checkIfBanned(id)) {
+      return;
+    }
+    if (id === Number(ADMIN_CHAT_ID) && reply_to_message) {
+      const arrOfSplitByNewLine = reply_to_message.text.split(`\n`);
+      const userToBeReplied =
+        arrOfSplitByNewLine[arrOfSplitByNewLine.length - 1];
+      if (!text) {
+        bot.sendMessage(ADMIN_CHAT_ID, textOnlyMessagesMsg);
+      } else {
+        bot.sendMessage(userToBeReplied, text);
+      }
+      return;
+    }
+
+    if (!text) {
+      bot.sendMessage(id, notALinkMsg);
+      return;
+    }
+
+    if (text[0] === "/") return;
+    let responseMessage = notALinkMsg;
+    if (validateLink(text)) {
+      responseMessage = validLinkMsg;
+      bot.sendMessage(
+        ADMIN_CHAT_ID,
+        `${text}\n\n${first_name} ${last_name || ""}\n@${username}\n${id}`
+      );
     } else {
-      bot.sendMessage(userToBeReplied, text);
+      if (/http/.test(text)) {
+        responseMessage = invalidLinksMsg;
+      }
     }
-    return;
+    bot.sendMessage(id, responseMessage);
   }
-
-  if (!text) {
-    bot.sendMessage(id, notALinkMsg);
-    return;
-  }
-
-  if (text[0] === "/") return;
-  let responseMessage = notALinkMsg;
-  if (validateLink(text)) {
-    responseMessage = validLinkMsg;
-    bot.sendMessage(ADMIN_CHAT_ID, `${text}\n\n${first_name} ${last_name || ''}\n@${username}\n${id}`);
-  } else {
-    if (/http/.test(text)) {
-      responseMessage = invalidLinksMsg;
-    }
-  }
-  bot.sendMessage(id, responseMessage);
-});
+);
 
 bot.onText(/\/start/, ({ chat: { id } }) => {
-  bot.sendMessage(id, greetingMsg);
-  bot.sendMessage(id, formatInfoMsg);
+  bot.sendMessage(id, greetingMsg).then(() => {
+    bot.sendMessage(id, formatInfoMsg);
+  });
 });
 
 bot.onText(/\/format_info/, ({ chat: { id } }) => {
