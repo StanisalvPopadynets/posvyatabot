@@ -5,14 +5,17 @@ export const YOUTUBE_SAFEGUARD_REGEXP =
 export const SOUNDCLOUD_REGEXP = /^(?:https?:\/\/)((?:www\.)|(?:m\.))?soundcloud\.com\/[a-z0-9](?!.*?(-|_){2})[\w-]{1,23}[a-z0-9](?:\/.+)?$/gm;
 export const SPOTIFY_REGEXP = /^(?:https:\/\/open\.spotify\.com|spotify)\/(track|playlist)/gm;
 
-export const greetingMsg = "вітаємо вас в боті для пропозицій музики для посвяти ФІТ 2023!";
-export const formatInfoMsg = `даному боту ви можете кинути посилання на spotify, soundcloud або youtube music (на крайній випадок, то також можна просто посилання на youtube відео). також прохання якщо хочете кинути більше трьох треків, то зберіть їх усі в плейліст і киньте одним посиланням.
+export const greetingMsg = `Привіт!
+Я - музичний агент Посвяти ФІТ 2023 😎`;
+export const formatInfoMsg = `Кидай мені посилання на улюблений трек із Spotify, SoundCloud або YouTube Music (в крайньому випадку - просто лінк на муз. відео з YouTube), і можливо саме під твої треки ми будемо запалювати посвяту! 💃
 
-приклади валідних посилань:
-https://open.spotify.com/track/5InNoJxaUQK1jkxQEF2l2Q?si=4c581b8597284466
-https://music.youtube.com/watch?v=BLcqj8w2vZ4&si=PBQlb_7uozL_5j6v
-https://soundcloud.com/tol1kebol1k/fluff-kisa
-https://www.youtube.com/watch?v=CtwEm71Tn8M`;
+Якщо маєш більше 3-х крутих треків - збери їх, будь ласка, в один плейліст і кидай посилання саме на нього :)
+
+Ось приклади валідних посилань, як орієнтир:
+► https://open.spotify.com/track/5InNoJxaUQK1jkxQEF2l2Q?si=4c581b8597284466
+► https://music.youtube.com/watch?v=BLcqj8w2vZ4&si=PBQlb_7uozL_5j6v
+► https://soundcloud.com/tol1kebol1k/fluff-kisa
+► https://www.youtube.com/watch?v=CtwEm71Tn8M`;
 export const invalidLinksMsg = `вибачте, це посилання не підтримується
 звіртеся з допустимими форматами (/format_info)`;
 export const notALinkMsg = `вибачте, ми приймаємо тільки посилання
