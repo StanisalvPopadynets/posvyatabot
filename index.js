@@ -17,8 +17,6 @@ const bot = new TelegramBot(token, { polling: true });
 
 const bannedTable = db("banned");
 
-const resetColorCheme = "\x1b[0m";
-
 // bot.on("message", (metadata) => {
 //   console.log(getDateTimeString() + metadata);
 // })
@@ -31,7 +29,6 @@ bot.on(
     chat: { id },
     reply_to_message,
   }) => {
-    console.log(resetColorCheme);
     const currentColorScheme = getColorSchemeString();
 
     if (await bannedTable.checkIfBanned(id)) {
@@ -105,7 +102,6 @@ bot.on(
 );
 
 bot.onText(/\/start/, ({ chat: { id } }) => {
-  console.log(resetColorCheme);
   const currentColorScheme = getColorSchemeString();
 
   console.log(currentColorScheme, getDateTimeString() + `[${id}|receieved /start command]`);
@@ -117,7 +113,6 @@ bot.onText(/\/start/, ({ chat: { id } }) => {
 });
 
 bot.onText(/\/format_info/, ({ chat: { id } }) => {
-  console.log(resetColorCheme);
   const currentColorScheme = getColorSchemeString();
 
   console.log(currentColorScheme, getDateTimeString() + `[${id}|receieved /format_info command]`);
@@ -126,7 +121,6 @@ bot.onText(/\/format_info/, ({ chat: { id } }) => {
 });
 
 bot.onText(/\/ban/, async ({ chat: { id }, text }) => {
-  console.log(resetColorCheme);
   const currentColorScheme = getColorSchemeString();
 
   console.log(currentColorScheme, getDateTimeString() + `[${id}|receieved /ban command]`);
@@ -146,7 +140,6 @@ bot.onText(/\/ban/, async ({ chat: { id }, text }) => {
 });
 
 bot.onText(/\/unban/, async ({ chat: { id }, text }) => {
-  console.log(resetColorCheme);
   const currentColorScheme = getColorSchemeString();
 
   console.log(currentColorScheme, getDateTimeString() + `[${id}|receieved /unban command]`);
