@@ -102,3 +102,8 @@ bot.onText(/\/unban/, async ({ chat: { id }, text }) => {
 });
 
 bot.on("polling_error", console.log);
+
+function getDateTimeString() {
+  var currentdate = new Date();
+  return `(${currentdate.getDate()}.${currentdate.getMonth() + 1}-${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()})`;
+}
