@@ -107,3 +107,12 @@ function getDateTimeString() {
   var currentdate = new Date();
   return `(${currentdate.getDate()}.${currentdate.getMonth() + 1}-${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()})`;
 }
+
+
+var colorSchemesCounter = -1;
+
+function getColorSchemeString() {
+  const colorSchemes = ["\x1b[32m", "\x1b[33m", "\x1b[34m", "\x1b[35m", "\x1b[36m"];
+  colorSchemesCounter = (colorSchemesCounter + 1) % colorSchemes.length;
+  return colorSchemes[colorSchemesCounter];
+}
