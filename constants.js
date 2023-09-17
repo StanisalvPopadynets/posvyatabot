@@ -3,9 +3,11 @@ export const YOUTUBE_REGEXP =
 export const YOUTUBE_SAFEGUARD_REGEXP =
   /(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/gm;
 // export const SOUNDCLOUD_REGEXP = /^(?:https?:\/\/)((?:www\.)|(?:m\.))?soundcloud\.com\/[a-z0-9](?!.*?(-|_){2})[\w-]{1,23}[a-z0-9](?:\/.+)?$/gm;
-export const SOUNDCLOUD_REGEXP = /^https?:\/\/((on\.)?soundcloud\.com)\/(.*)$/gm;
+export const SOUNDCLOUD_REGEXP =
+  /^https?:\/\/((on\.)?soundcloud\.com)\/(.*)$/gm;
 // export const SPOTIFY_REGEXP = /^(?:https:\/\/open\.spotify\.com|spotify)\/(track|playlist)/gm;
-export const SPOTIFY_REGEXP = /(?:https:\/\/open\.spotify\.com|spotify)\/(track\/|playlist\/)[a-zA-Z0-9]+(\?si=)[a-zA-Z0-9]+|(?:https:\/\/spotify\.link)\/([a-zA-Z0-9]+)/gm;
+export const SPOTIFY_REGEXP =
+  /https:\/\/(open\.spotify\.com|spotify\.link)\/[a-zA-Z0-9\/?=_%&.-]+/gm;
 
 export const greetingMsg = `Привіт!
 Я - музичний агент Посвяти ФІТ 2023 😎`;
